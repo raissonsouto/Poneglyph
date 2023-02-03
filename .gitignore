@@ -1,0 +1,4 @@
+.vscode
+/scripts/__pycache__
+/private
+.idea/

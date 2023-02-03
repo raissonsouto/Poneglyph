@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+#  web:
+#    build: .
+#    command: gunicorn --bind 0.0.0.0:8000 app:app
+#    environment:
+#      - FLASK_APP=app.py
+#      - FLASK_ENV=development
+#      - DATABASE_URL=postgres://user:password@db:5432/dbname
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - db
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    command: ["/bin/bash", "-c", "psql -U ${DB_USER} -d ${DB_DATABASE} < init.sql"]
+
+volumes:
+  pgdata:
