@@ -7,24 +7,23 @@ authentication and authorization in a easy way.
 
 ## How to run it on your machine
 
-First, you will need to ...
+First, you will need to clone the repository.
 
 ```
-$ git clone
+$ git clone https://github.com/raissonsouto/bifrost.git && cd bifrost
 ```
-```
-$ cd bifrost
-```
+After downloading and navigate to the directory, build the image using:
 ```
 $ docker build -t bifrost .
 ```
-Or get the image at dockerhub and run it:
+---
+Or get the image at dockerhub and run it.
 
 ```
 $ docker pull raissonsouto/bifrost:<version>
 ```
 
-1. Run as dockerfile:
+**Option 1:** Run as docker-compose.
 ```
 version: 3.6
 
@@ -34,7 +33,7 @@ services:
     port: 5757:5757
 ```
 
-2. run in command line:
+**Option 2:** run in command line:
 ```
 $ docker run -p 5757:5757 --name bifrost raissonsouto/bifrost<version>
 ```
@@ -42,5 +41,5 @@ $ docker run -p 5757:5757 --name bifrost raissonsouto/bifrost<version>
 ## Contribute
 - Report bugs
 - Create test cases
-- Help us writing the documentation
+- Help us to write the documentation
 - Translate already created documentation

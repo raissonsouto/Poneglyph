@@ -17,4 +17,5 @@ pytest-cov==2.4.0
 # Non related to Flask Packages
 argon2-cffi==21.3.0
 cryptography~=39.0.0
-python-dotenv~=0.21.0
+
+requests~=2.28.1

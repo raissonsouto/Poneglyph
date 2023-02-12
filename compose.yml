@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
 #  web:
@@ -14,11 +14,13 @@ services:
 #      - db
 
   db:
-    image: postgres:latest
+    image: ${DB_NAME}:${DB_VERSION}
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
+    ports:
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     command: ["/bin/bash", "-c", "psql -U ${DB_USER} -d ${DB_DATABASE} < init.sql"]

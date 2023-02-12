@@ -2,3 +2,5 @@
 /scripts/__pycache__
 /private
 .idea/
+.env
+bifrost.log
