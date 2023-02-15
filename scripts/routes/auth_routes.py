@@ -52,13 +52,3 @@ def login():
 # @auth_routes.route("/forgot-password/random code", methods=["POST"])
 
 # @auth_routes.route("/change-password", methods=["POST"])
-
-# @auth_routes.route("/get-account", methods=["POST"])
-
-# @auth_routes.route("/update-account", methods=["POST"])
-
-@auth_routes.route("/delete-account", methods=["POST"])
-def delete_account():
-    if not request.is_json:
-        return jsonify({'message': Messages.REQUEST_IS_NOT_A_JSON}), 400
-    return 200
