@@ -5,7 +5,9 @@ from scripts.routes.authz_routes import authz_routes
 import os
 
 
-def main():
+if __name__ == '__main__':
+    db.create_all()
+
     app.register_blueprint(auth_routes)
     app.register_blueprint(authz_routes)
 
@@ -14,8 +16,3 @@ def main():
         host=os.getenv('APP_HOST'),
         port=os.getenv('APP_PORT')
     )
-
-
-if __name__ == '__main__':
-    db.create_all()
-    main()

@@ -3,15 +3,15 @@ version: '3.7'
 services:
 #  web:
 #    build: .
-#    command: gunicorn --bind 0.0.0.0:8000 app:app
 #    environment:
 #      - FLASK_APP=app.py
 #      - FLASK_ENV=development
 #      - DATABASE_URL=postgres://user:password@db:5432/dbname
 #    ports:
-#      - "8000:8000"
+#      - "${APP_PORT}:8000"
 #    depends_on:
 #      - db
+#      - redis
 
   db:
     image: ${DB_NAME}:${DB_VERSION}
@@ -20,10 +20,18 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-    command: ["/bin/bash", "-c", "psql -U ${DB_USER} -d ${DB_DATABASE} < init.sql"]
+    #command: ["/bin/bash", "-c", "psql -U ${DB_USER} -d ${DB_DATABASE} < init.sql"]
+
+  redis:
+    image: redis:${REDIS_VERSION}
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - redis_data:/data
 
 volumes:
   pgdata:
+  redis_data:
