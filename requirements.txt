@@ -8,7 +8,7 @@ flask~=2.2.2
 flask-login==0.4.0
 flask-migrate==2.0.2
 flask-script==2.0.5
-flask-SQLAlchemy==2.4.0
+flask-SQLAlchemy==2.5.1
 
 # Automated tests
 pytest==3.0.5

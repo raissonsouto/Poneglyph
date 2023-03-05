@@ -15,12 +15,17 @@ def register():
     username = json_data['username']
     password = json_data['password']
     email = json_data['email']
-    phone = json_data['phone']
+    phone = None
 
-    if not username or not password or not email or not phone:
+    try:
+        phone = json_data['phone']
+    except KeyError:
+        pass
+
+    if not username or not password or not email:
         return jsonify({'message': Messages.MISSING_PARAMS}), 400
 
-    if not User.create_user(username, email, password, phone):
+    if not User.create(username, email, password, phone):
         return jsonify({'message': Messages.REGISTER_FAILED}), 400
 
     return jsonify(), 200

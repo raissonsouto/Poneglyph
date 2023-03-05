@@ -28,8 +28,12 @@ class User(db.Model):
         return user
 
     @classmethod
-    def get(cls, user_id):
+    def get_by_id(cls, user_id):
         return cls.query.get(user_id)
+
+    @classmethod
+    def get_by_username(cls, username):
+        return cls.query.filter_by(username=username).first()
 
     @classmethod
     def get_all(cls):
@@ -49,3 +53,17 @@ class User(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+    @classmethod
+    def authenticate(cls, username: str, password: str):
+        try:
+            user = User.get_by_username(username)
+
+            if Guardian.verify_password(user.password, password):
+                return 12341234
+
+            else:
+                return None
+
+        except Exception as e:
+            return None
