@@ -15,7 +15,7 @@ def register():
     username = json_data['username']
     password = json_data['password']
     email = json_data['email']
-    phone = None
+    phone = ""
 
     try:
         phone = json_data['phone']
@@ -25,10 +25,10 @@ def register():
     if not username or not password or not email:
         return jsonify({'message': Messages.MISSING_PARAMS}), 400
 
-    if not User.create(username, email, password, phone):
+    if not User(username, email, password, phone):
         return jsonify({'message': Messages.REGISTER_FAILED}), 400
 
-    return jsonify(), 200
+    return jsonify({'message': Messages.REGISTER_SUCCESED}), 200
 
 
 @auth_routes.route("/login", methods=["POST"])
