@@ -89,24 +89,24 @@ class Role(Base):
         :param parent: The new parent of the role. If not provided, the parent is not changed.
         :type parent: Role
         """
-        if name is not None:
+        if name:
             self.name = name
 
-        if capacity is not None:
+        if capacity:
             self.capacity = capacity
 
-        if parent is not None:
+        if parent:
             self.parent = parent
 
         self.last_edited = datetime.utcnow()
 
-        logger.info(
-            f"Role '{self.name}' updated with id={self.id}, capacity={self.capacity}, and superior={self.superior}")
+        logger.info(f"Role '{self.name}' updated with id={self.id}, capacity={self.capacity}, and superior={self.superior}")
+
+        db.session.commit(self)
 
     @classmethod
     def delete_by_id(cls, role_id: int) -> None:
-        """
-        Delete a Role object from the database by its ID.
+        """Delete a Role object from the database by its ID.
 
         :param role_id: The ID of the role to delete.
         :type role_id: int
@@ -122,8 +122,7 @@ class Role(Base):
 
     @classmethod
     def delete_by_name(cls, role_name: str) -> None:
-        """
-        Delete a Role object from the database by its name.
+        """Delete a Role object from the database by its name.
 
         :param role_name: The name of the role to delete.
         :type role_name: str
