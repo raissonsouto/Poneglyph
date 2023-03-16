@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 #from flask_login import LoginManager
 #from flask_apscheduler import APScheduler
 from scripts.guardian import Guardian
+from sqlalchemy.ext.declarative import declarative_base
 import logging
 import os
 import dotenv
@@ -50,3 +51,5 @@ db = SQLAlchemy(app)
 logger = logging.getLogger(__name__)
 #login_manager = LoginManager(app)
 #scheduler = APScheduler()
+
+Base = declarative_base()

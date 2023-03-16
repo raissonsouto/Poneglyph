@@ -1,5 +1,5 @@
 from datetime import datetime
-from scripts.setup import db, guardian
+from scripts.setup import db, guardian, Base, logger
 import sys
 
 
@@ -11,7 +11,9 @@ def check_password():
     pass
 
 
-class User(db.Model):
+class User(Base):
+    __tablename__ = 'users'
+
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     username = db.Column(db.LargeBinary, unique=True, nullable=False)
     email = db.Column(db.LargeBinary, unique=True, nullable=False)
