@@ -12,10 +12,36 @@ POST /auth/register
 
 #### Request Body
 
+| Parameter | Type   | Description         |
+| --------- | ------ | ------------------- |
+| username  | string | The user's username. |
+| password  | string | The user's password. |
+
+#### Response
+
+| Parameter     | Type   | Description                                      |
+| ------------- | ------ | ------------------------------------------------ |
+| access_token  | string | The access token for the authenticated user.     |
+| token_type    | string | The type of token, typically "Bearer".           |
+| expires_in    | number | The number of seconds until the token expires.   |
+| refresh_token | string | The refresh token that can be used to get a new access token. |
+
 #### Example
 
 ```
+POST /auth/login
+{
+    "username": "user",
+    "password": "password"
+}
 
+HTTP/1.1 200 OK
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "refresh_token": "CfDJ8"
+}
 ```
 
 ### Login
@@ -95,11 +121,21 @@ POST /authz/add-role
 | role name | string | The role name.                                                                            |
 | superior  | string | If there is a role above this one pass the name, if it doesn`t, just pass in empty string |
 
+#### Response
+
+| Parameter     | Type   | Description                                      |
+| ------------- | ------ | ------------------------------------------------ |
+| access_token  | string | The access token for the authenticated user.     |
+| token_type    | string | The type of token, typically "Bearer".           |
+| expires_in    | number | The number of seconds until the token expires.   |
+| refresh_token | string | The refresh token that can be used to get a new access token. |
+
 #### Example
 
 ```
 POST /authz/add-role
 {
+    "token": "h2lkj34h5jkl23h45jkl2"
     "role_name": "tenant",
     "superior": "admin"
 }
